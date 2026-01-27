@@ -46,3 +46,32 @@ Continuando con lo visto en clase, en primer lugar se toma el dataset dado y se 
 0.1 con 2000 iteraciones:
 ![alt text](fotos/image-10.png)
 ![alt text](fotos/image-11.png)
+
+## Convergencia
+![alt text](fotos/convergencia.png)
+
+Haremos el análisis con alpha = 0.1 porque es la que mantiene mayor estabilidad y menor porcentaje de error.
+
+Según esta gráfica que nos da el código:
+plt.figure()
+plt.plot(it_hist[10:], cost_hist[10:])  # skip the first pointplt.xlabel("Iteration")
+plt.ylabel("Cost J(w,b)")
+plt.title("Gradient Descent: Cost vs Iterations")
+plt.show()
+
+Podemos analizar que:
+La gráfica muestra una convergencia rápida y efectiva del algoritmo de descenso por gradiente:
+- Fase inicial (iteraciones 0-200): Se observa una disminución pronunciada del costo desde aproximadamente J ≈ 32 hasta J ≈ 10. Esta caída abrupta indica que el algoritmo está alejándose rápidamente de la inicialización pobre (w=0, b=0) hacia una región del espacio de parámetros con mejor ajuste.
+- Fase de convergencia (iteraciones 200-400): La curva se aplana gradualmente, mostrando que el algoritmo se acerca al mínimo. La tasa de reducción del costo disminuye a medida que los gradientes se vuelven más pequeños cerca del óptimo.
+- Fase de estabilización (iteraciones 400+): El costo se estabiliza alrededor de J ≈ 10, indicando que el algoritmo ha alcanzado o está muy cerca del mínimo global. Las variaciones son mínimas después de este punto.
+
+De igual manera, podemos observar que la gráfica presenta una estabilidad, en donde desciende sin oscilaciones y presenta un error no tan grande, no como se pudo evidenciar con las gráficas cuando se utilizó por ejemplo 0.01 como alpha.
+
+## Preguntas conceptuales
+1. Representación astronómica de w: 
+2. ¿Por qué es limitado un modelo lineal?
+Es limitado debido a que podemos tener formas en los datos que no correspondan a una forma lineal, tal y como en este caso que presente una forma más curva, lo cual hace que los datos no queden sobre la línea al hacer la regresión linear, haciendo que haya un error significativo al no elegir el mejor modelo para los datos.
+
+
+## Cuaderno 2: Regresión con varias características
+

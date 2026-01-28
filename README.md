@@ -68,7 +68,7 @@ La gráfica muestra una convergencia rápida y efectiva del algoritmo de descens
 De igual manera, podemos observar que la gráfica presenta una estabilidad, en donde desciende sin oscilaciones y presenta un error no tan grande, no como se pudo evidenciar con las gráficas cuando se utilizó por ejemplo 0.01 como alpha.
 
 ## Preguntas conceptuales
-1. Representación astronómica de w: 
+1. Representación astronómica de w: w representa la tasa de aumento de luminosidad con la masa, pero una relación puramente lineal es insuficiente para describir estrellas reales.
 2. ¿Por qué es limitado un modelo lineal?
 Es limitado debido a que podemos tener formas en los datos que no correspondan a una forma lineal, tal y como en este caso que presente una forma más curva, lo cual hace que los datos no queden sobre la línea al hacer la regresión linear, haciendo que haya un error significativo al no elegir el mejor modelo para los datos.
 

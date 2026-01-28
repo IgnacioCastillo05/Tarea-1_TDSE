@@ -109,3 +109,25 @@ Recomendaciones:
 Para predicciones de luminosidad estelar en producción, utilizar el modelo completo M3 con todos los términos de interacción
 Considerar características adicionales como el radio estelar o la clase espectral para mejorar la precisión
 La regresión polinomial captura efectivamente relaciones astrofísicas no lineales.
+
+## AWS SageMaker Requirement
+
+Se colocaron los dos archivos dentro del SageMaker tal y como se ve en la imagen a continuación. Luego de ello, se eligió el kernel ya dado de Python, a diferencia de cuando se trabaja localmente que uno crea el ambiente.
+
+![alt text](fotos/sagemaker1.png)
+
+Ya hacia el código que estaba presente en el notebook, todo se pudo compilar de manera correcta en ambos cuadernos.
+
+![alt text](fotos/sagemaker2image.png)
+
+![alt text](fotos/sagemaker3.png)
+
+Como se pudo evidenciar, todo funcionó de manera correcta dentro de SageMaker, cada fragmento de código tuvo los resultados esperados, resultados también ya evidenciados cuando se trabajó de manera local.
+
+Sobre las principales diferencias entre trabajar en local a trabajar en el SageMaker, se tienen:
+1. Infraestructura y Recursos Computacionales: Mientras que en local se limita a los componentes del hardware de la máquina y el escalamiento no es tan fácil, en SageMaker tienes acceso directo a instancias potentes y tiene un escalamiento horizontal y vertical on-demand.
+2. Gestión del Entorno: En local debes encargarte de la instalación de todo y existen problemas de compatibilidad frecuente, en SageMaker ya están los ambientes pre-configurados con frameworks optimizados, con una misma versión en desarrollo y producción.
+3. Ciclo de Vida del ML: En local, todo se maneja de manera manual, en donde sería:
+Exploración → Entrenamiento → ??? → Producción (manualmente)
+Mientras que en SageMaker ya hay un pipeline completo ya integrado y el deploy se hace de manera sencilla, de la siguiente manera:
+Exploración → Training Jobs → Model Registry → Endpoint (automático)

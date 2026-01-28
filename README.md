@@ -75,3 +75,37 @@ Es limitado debido a que podemos tener formas en los datos que no correspondan a
 
 ## Cuaderno 2: Regresión con varias características
 
+Para este segundo notebook, se tiene un nuevo dataset, el cual representado gráficamente se ve de la siguiente manera:
+![alt text](fotos/dataset2.png)
+
+Se puede ver que la luminosidad aumenta rápidamente con la masa (relación no lineal), al igual que la temperatura también aumenta con la masa (mostrado por gradiente de color). Por ende, la relación parece ser más que lineal, lo que sugiere que podrían necesitarse términos polinómicos.
+
+Se encontró tanto la pérdida como los gradientes los cuales dieron los siguientes resultados:
+Test with w=0, b=0:
+Cost: 117.6967
+Gradient dJ/dw: [-10.4151  -9.5976 -10.9942 -10.7188]
+Gradient dJ/db: -10.3600
+
+Y la gráfica que dió fue:
+![alt text](fotos/graficofinal.png)
+
+Hallazgos Clave:
+1. Impacto de la Ingeniería de Características:
+El modelo lineal (M1) presenta un subajuste significativo en los datos de luminosidad estelar. Al agregar el término M² (M2), se captura mejor la relación no lineal entre masa y luminosidad. La inclusión de la interacción M*T (M3) proporciona el mejor ajuste, capturando el acoplamiento entre masa y temperatura.
+2. Desempeño de los Modelos:
+
+- M1 (lineal): Mayor pérdida, predicciones deficientes
+![alt text](fotos/modelo1.png)
+- M2 (cuadrático): Mejora significativa
+![alt text](fotos/modelo2.png)
+- M3 (completo): Mejor desempeño, menor pérdida
+![alt text](fotos/modelo3.png)
+
+3. Interpretaciones Físicas:
+El término de interacción M*T tiene significado físico: estrellas más calientes de la misma masa son más luminosas. El término cuadrático de masa captura la conocida relación L ∝ M^(3-4) para estrellas de secuencia principal. La regresión polinomial modela exitosamente la física estelar compleja.
+4. Convergencia:
+El descenso por gradiente convergió confiablemente para todos los modelos con α = 0.1. La normalización de características fue esencial para la convergencia estable. Aproximadamente 500-1000 iteraciones fueron suficientes para la convergencia.
+Recomendaciones:
+Para predicciones de luminosidad estelar en producción, utilizar el modelo completo M3 con todos los términos de interacción
+Considerar características adicionales como el radio estelar o la clase espectral para mejorar la precisión
+La regresión polinomial captura efectivamente relaciones astrofísicas no lineales.

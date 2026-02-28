@@ -1,0 +1,210 @@
+=========================================================
+AUTOMATIC COPILOT EVALUATION — TA GRADING REPORT
+Course: Digital Transformation and Enterprise Architecture
+Assignment: Tarea 1 – Stellar Luminosity Regression from First Principles
+=========================================================
+
+---------------------------------------------------------
+1. Summary
+---------------------------------------------------------
+The submission is overall solid and demonstrates a genuine understanding of
+linear and polynomial regression from first principles. Both notebooks are
+present, datasets are defined inline, and all three mandatory items for
+Notebook 2 are fully implemented. Notebook 1 covers non-vectorized and
+vectorized gradient descent with correct gradient formulas and cost surface
+visualization. However, the mandatory multiple learning-rate experiment in
+Notebook 1 is absent from the notebook code (only alpha=0.1 is actually run;
+the README displays images that appear to come from separate, undocumented
+runs rather than from cells inside the notebook). Conceptual discussion is
+placed in the README rather than as markdown cells inside the notebook itself.
+Notebook 2 is thorough and well-structured, covering all mandatory tasks.
+SageMaker evidence is present but contains one broken image reference.
+pandas is imported and used in both notebooks, which is a minor violation of
+the "only NumPy and Matplotlib" constraint.
+
+---------------------------------------------------------
+2. Grading Breakdown (0.0 – 5.0 scale)
+---------------------------------------------------------
+
+2.1 Repository structure & compliance    [ 0.40 / 0.50 ]
+    - README.md present                              ✓
+    - Two notebooks covering Part I and Part II      ✓
+    - Datasets defined inside notebooks              ✓
+    - Only allowed libraries (NumPy, Matplotlib):    ✗ (minor)
+      * pandas is imported and used in both notebooks
+        (cell 1 pip-installs it; cuaderno2.ipynb uses it for data
+         display). The constraint explicitly allows only Python, NumPy,
+         and Matplotlib. Deduction: -0.10
+
+2.2 Notebook 1 – Linear Regression      [ 1.60 / 2.00 ]
+    - Dataset definition (inline x, y lists)         ✓
+    - Dataset scatter plot                            ✓
+    - predict() / hypothesis implementation          ✓
+    - compute_cost() / MSE implementation            ✓
+    - Cost surface (3D grid + plot)                  ✓
+    - Correct non-vectorized gradient derivation     ✓
+    - Non-vectorized gradient_descent()              ✓
+    - Convergence plot (non-vectorized)              ✓
+    - Final fit plot (non-vectorized)                ✓
+    - Correct vectorized gradient derivation         ✓
+    - Vectorized gradient_descent()                  ✓
+    - Convergence plot (vectorized)                  ✓
+    - Final fit plot (vectorized)                    ✓
+    - Multiple learning-rate experiments (≥3):       ✗ MANDATORY MISSING
+      * The notebook only runs gradient descent once
+        with alpha=0.1 for each version (cells 10 and 15).
+        The README shows plots for 0.01, 0.05, 0.1 but there
+        is no corresponding code in the notebook cells that
+        loops over or compares multiple alpha values. The
+        experiment is undocumented inside the notebook.
+        Deduction: -0.25
+    - Conceptual discussion (meaning of w, limits of
+      linearity): present in README but not as markdown
+      cells or comments inside the notebook itself.
+      Deduction: -0.10
+    - Cost surface explanation: present in README only,
+      minimal inline explanation in notebook cell.
+      (minor) Deduction: -0.05
+
+2.3 Notebook 2 – Polynomial Regression  [ 1.90 / 2.00 ]
+    - Dataset defined inline                         ✓
+    - Visualization with temperature color encoding  ✓
+    - Feature engineering [M, T, M², M·T]            ✓
+    - Feature normalization (z-score)                ✓
+    - Vectorized compute_cost()                      ✓
+    - Vectorized compute_gradient()                  ✓
+    - Gradient descent + convergence plot            ✓
+    - Feature selection M1, M2, M3 comparison        ✓ (MANDATORY)
+    - Predicted vs actual plots for all models       ✓
+    - Interaction cost analysis (w_MT sweep)         ✓ (MANDATORY)
+    - Inference demo (M=1.3, T=6600 K)               ✓ (MANDATORY)
+    - Interpolation reasonableness check             ✓
+    - Physical interpretation of coefficients        ✓
+    - pandas used for display (minor library
+      violation, same as Notebook 1)                 ✗ (minor)
+      Deduction: -0.10
+
+2.4 Cloud execution evidence (SageMaker) [ 0.40 / 0.50 ]
+    - Description of SageMaker execution             ✓
+    - Screenshot: notebooks uploaded to SageMaker    ✓
+    - Screenshot: successful code execution          ✓
+    - Screenshot: at least one visible plot          ✓ (sagemaker3.png)
+    - Local vs cloud comparison (detailed)           ✓
+    - Broken image reference in README:              ✗ (minor)
+      README line references "fotos/sagemaker2image.png"
+      but the actual file is "fotos/sagemaker2.png".
+      The image does not render correctly in GitHub.
+      Deduction: -0.10
+
+-----------------------------------------------
+Total:   4.30 / 5.0
+-----------------------------------------------
+
+---------------------------------------------------------
+3. Final Grade
+---------------------------------------------------------
+Final grade: 4.3 / 5.0
+
+Verdict: PASS  (minimum passing grade is 3.0 / 5.0)
+
+---------------------------------------------------------
+4. Strengths
+---------------------------------------------------------
+- Both notebooks are cleanly organized and cover the required topics in a
+  logical, step-by-step progression.
+- The cost surface in Notebook 1 is correctly implemented as a 3D mesh grid
+  covering a meaningful range of w and b values.
+- Both vectorized and non-vectorized implementations of gradient descent are
+  present and correctly coded.
+- Notebook 2 is particularly strong: the feature engineering (build_features),
+  cost/gradient functions, model comparison (M1/M2/M3), w_MT sensitivity
+  sweep, and inference demo are all present and well-implemented.
+- The w_MT sensitivity analysis (Task 6) includes a clear parabolic plot with
+  a vertical line at the optimal value and a detailed physical interpretation.
+- The inference demo (Task 7) includes a reasonableness check comparing the
+  prediction against neighboring training points and the empirical L ∝ M^3.5
+  relation — a nice touch.
+- The README provides thorough explanations for convergence behavior, physical
+  interpretation of parameters, and a meaningful local vs. SageMaker
+  comparison.
+- SageMaker evidence includes three screenshots and a concise, accurate
+  discussion of infrastructure and environment differences.
+
+---------------------------------------------------------
+5. Issues & Missing Elements
+---------------------------------------------------------
+CRITICAL / MANDATORY:
+- [Notebook 1] Multiple learning-rate experiments (≥3) are MANDATORY but
+  absent from the notebook code. Only alpha=0.1 is programmatically run.
+  The README includes images for 0.01, 0.05, and 0.1, but there is no cell
+  in cuaderno1.ipynb that iterates over or explicitly compares multiple alpha
+  values. The notebook as submitted cannot reproduce those plots on its own.
+
+MODERATE:
+- [Notebook 1] Conceptual questions (meaning of w in astrophysical terms, why
+  a linear model is limited) are answered only in the README, not inside the
+  notebook as markdown cells or inline print statements. A self-contained
+  notebook should include these reflections.
+- [Both notebooks] pandas is imported and used (pip-installed in cell 1 of
+  each notebook), violating the "only Python, NumPy, Matplotlib" constraint.
+  Although pandas is used purely for display (pd.DataFrame), it should be
+  replaced by NumPy-based printing or simply removed to comply strictly with
+  the assignment rules.
+
+MINOR:
+- [README] The image reference on line ~121 is broken: the README uses
+  "fotos/sagemaker2image.png" but the actual file is "fotos/sagemaker2.png".
+  This means one of the three SageMaker screenshots does not render on GitHub.
+- [Notebook 1] The cost surface cell has no inline markdown explanation;
+  the discussion lives only in the README. It is better practice to include
+  interpretation directly in the notebook.
+- [Notebook 1] The convergence plot cell 11 has a minor formatting error:
+  `plt.plot(it_hist[10:], cost_hist[10:])  # skip the first pointplt.xlabel`
+  — the comment and the next statement are on the same line without a
+  newline. This would not affect execution but is a code quality issue.
+
+---------------------------------------------------------
+6. TA Feedback to Student
+---------------------------------------------------------
+Dear student,
+
+Overall, this is a well-executed submission that demonstrates a solid grasp
+of the regression concepts covered in class. Your Notebook 2 in particular
+is complete and thorough — every mandatory task is present, the feature
+engineering is correct, and your physical interpretations are insightful.
+Well done on the w_MT sensitivity sweep and the inference example.
+
+There are three areas I would encourage you to address in future work:
+
+1. Keep experiments self-contained inside the notebook. The multiple
+   learning-rate comparison is a mandatory item, and it must be reproducible
+   by simply running the notebook from top to bottom. Placing the resulting
+   plots only in the README, without the code that generated them, makes it
+   impossible to verify or reproduce the experiment. Add a loop (or three
+   consecutive cells) that runs gradient descent for alpha = 0.01, 0.05, and
+   0.10, plots all convergence curves on the same figure, and briefly comments
+   on the differences. This is a straightforward addition that will
+   significantly strengthen your submission.
+
+2. Move conceptual discussion into the notebooks. Questions about the
+   astrophysical meaning of the learned weight w and about the limitations of
+   a linear model should appear as markdown cells immediately after the
+   relevant code cells — not just in the README. A notebook should be a
+   self-contained, narrative document.
+
+3. Respect the library constraint strictly. The assignment allows only Python,
+   NumPy, and Matplotlib. pandas is a powerful library, but it is not on the
+   approved list. Replacing the DataFrame display with a simple NumPy print
+   or a formatted string takes only a couple of lines and ensures full
+   compliance.
+
+Finally, double-check your image paths in the README. One of your SageMaker
+screenshots has a broken link ("sagemaker2image.png" should be
+"sagemaker2.png"), which means reviewers cannot see it on GitHub.
+
+Your understanding of the underlying mathematics is evident, and the code
+quality is generally good. With the additions above, this would be a
+near-perfect submission. Keep up the good work!
+
+— Teaching Assistant
+=========================================================

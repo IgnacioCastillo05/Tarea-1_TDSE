@@ -1,0 +1,215 @@
+================================================================
+AUTOMATIC COPILOT EVALUATION REPORT
+Course: Digital Transformation and Enterprise Architecture (TDSE)
+Topic:  Stellar Luminosity – Linear and Polynomial Regression
+================================================================
+
+------------------------------------------------------------
+SUMMARY
+------------------------------------------------------------
+The student demonstrates solid technical understanding of linear
+and polynomial regression from first principles. Both notebooks are
+well-structured, implement all required algorithms (including both
+non-vectorized and vectorized gradient descent), and cover every
+mandatory section. The dataset is defined inline in each notebook,
+and AWS SageMaker execution is documented with screenshots. The
+primary compliance issue is the use of pandas (not in the allowed
+library list) in Notebook 2 for display purposes. Conceptual
+explanations appear mostly in the README rather than inline in the
+notebook markdown cells, which slightly reduces self-containment.
+Overall, this is a strong submission that clearly meets the passing
+threshold.
+
+------------------------------------------------------------
+GRADING BREAKDOWN (0.0 – 5.0 scale)
+------------------------------------------------------------
+
+1. Repository Structure & Compliance        0.40 / 0.50
+   - README.md present and detailed.              ✓
+   - Two notebooks (cuaderno1.ipynb, cuaderno2.ipynb) present. ✓
+   - Datasets defined inside both notebooks.      ✓
+   - pandas imported and used in cuaderno2.ipynb
+     (and installed via %pip in both notebooks).  ✗
+     Assignment explicitly permits only Python, NumPy, Matplotlib.
+   Deduction: -0.10 (non-compliant library)
+
+2. Notebook 1 – Linear Regression           1.80 / 2.00
+   - Dataset scatter plot visualised.             ✓
+   - predict() and compute_cost() (MSE) implemented. ✓
+   - 3-D cost surface (grid + plot) present.      ✓
+   - Gradient derivation (dJ/dw, dJ/db) correct. ✓
+   - Non-vectorized gradient descent implemented. ✓
+   - Vectorized gradient descent implemented.     ✓
+   - Convergence plot (cost vs. iterations).      ✓
+   - Three learning-rate experiments (α = 0.01, 0.05, 0.1)
+     for both non-vectorized and vectorized GD.   ✓
+   - Final fit plot present.                      ✓
+   - Conceptual questions answered (meaning of w,
+     limits of linearity) – placed in README only. ✓/✗
+   Deduction: -0.20 for placing conceptual discussion exclusively
+   in the README rather than as notebook markdown cells, reducing
+   notebook self-containment.
+
+3. Notebook 2 – Polynomial Regression       1.80 / 2.00
+   - Scatter plot with temperature colour encoding. ✓
+   - Feature engineering [M, T, M², M·T] via
+     build_features() function.                   ✓
+   - Vectorized loss and gradient functions.       ✓
+   - Training and convergence plot (M3 model).     ✓
+   - Model comparison M1 / M2 / M3 with final
+     loss and predicted-vs-actual plots.           ✓
+   - Cost vs. w_MT sweep (interaction term
+     sensitivity analysis).                        ✓
+   - Inference example for new star (M=1.3, T=6600 K)
+     with interpretation.                          ✓
+   - Physical interpretation and findings placed in
+     README rather than notebook markdown cells.   ✗
+   Deduction: -0.20 for placing results interpretation and
+   physical discussion exclusively in the README rather than
+   inline as notebook markdown cells.
+
+4. Cloud Execution Evidence (SageMaker)     0.45 / 0.50
+   - Written description of SageMaker usage.      ✓
+   - Screenshot of notebooks loaded in SageMaker
+     (sagemaker1.png).                             ✓
+   - Screenshot of successful execution
+     (sagemaker3.png).                             ✓
+   - At least one plot screenshot included.        ✓
+   - Local vs. cloud comparison written.           ✓
+   - Minor issue: README references
+     "fotos/sagemaker2image.png" but the file
+     in the repo is "fotos/sagemaker2.png"
+     (broken image link in README).                ✗
+   Deduction: -0.05
+
+------------------------------------------------------------
+FINAL GRADE
+------------------------------------------------------------
+  Repository structure & compliance:  0.40 / 0.50
+  Notebook 1 – Linear regression:     1.80 / 2.00
+  Notebook 2 – Polynomial regression: 1.80 / 2.00
+  Cloud execution evidence:           0.45 / 0.50
+  -----------------------------------------------
+  Total:                              4.45 / 5.00
+
+Final grade: 4.45 / 5.0
+Result: PASS (≥ 3.0)
+
+------------------------------------------------------------
+STRENGTHS
+------------------------------------------------------------
+• Both mandatory algorithm variants (non-vectorized and vectorized
+  gradient descent) are implemented cleanly and correctly.
+• All three mandatory sections are present: cost surface (3-D),
+  convergence plot, and multiple learning-rate experiments (≥ 3).
+• Notebook 2 covers every mandatory task: M1/M2/M3 feature
+  selection comparison, w_MT cost sweep, and inference demo.
+• Datasets are fully self-contained inside the notebooks.
+• SageMaker evidence is thorough: three screenshots plus a clear
+  local-vs-cloud comparison.
+• README is detailed and contains genuinely useful explanations
+  of the physics (e.g., meaning of w, L ∝ M^(3-4) relationship).
+• Gradient derivations are mathematically correct for both the
+  scalar and vectorized cases.
+• Feature normalisation (z-score) is applied in Notebook 2,
+  showing awareness of numerical stability in gradient descent.
+
+------------------------------------------------------------
+ISSUES & MISSING ELEMENTS
+------------------------------------------------------------
+• pandas is imported and used in cuaderno2.ipynb, violating the
+  "only Python, NumPy, Matplotlib" constraint.
+• Conceptual discussion (meaning of w, limits of linearity in
+  Notebook 1; physical interpretation in Notebook 2) lives
+  entirely in the README rather than in notebook markdown cells.
+  Notebooks should be self-contained learning documents.
+• Broken image link in README: "fotos/sagemaker2image.png" does
+  not match the actual filename "fotos/sagemaker2.png".
+• The cost surface explanation is present in the README but a
+  brief inline markdown cell in Notebook 1 would strengthen it.
+
+------------------------------------------------------------
+TA FEEDBACK TO STUDENT
+------------------------------------------------------------
+Excellent work overall. Your implementations are technically sound
+and you have covered all required components. To improve the
+submission:
+
+1. Remove the pandas import from cuaderno2.ipynb. The DataFrame
+   display is convenient, but a simple print() or NumPy array
+   display satisfies the requirement without breaking the
+   constraint. The %pip install lines should also be limited to
+   numpy and matplotlib.
+
+2. Move your conceptual answers into the notebooks themselves as
+   markdown cells. A notebook should tell the full story without
+   requiring the reader to switch to the README. The explanations
+   you wrote are good – they just belong inline with the code.
+
+3. Fix the broken image link in the README
+   (sagemaker2image.png → sagemaker2.png).
+
+4. Consider adding a brief markdown cell in Notebook 1 explaining
+   the cost surface shape (convexity, uniqueness of minimum)
+   immediately after the 3-D plot – your README already has this
+   text, so it is a copy-paste away.
+
+These are minor issues on an otherwise strong submission.
+
+------------------------------------------------------------
+AI-GENERATION ASSESSMENT (NON-GRADING, INFORMATIVE ONLY)
+------------------------------------------------------------
+
+A. Qualitative Assessment
+
+   Indicators suggesting AI assistance:
+   - Function docstrings follow a highly uniform NumPy-style
+     format (Parameters / Returns sections) consistently across
+     all functions in both notebooks, which is atypically
+     thorough for a homework submission.
+   - Section headers (e.g., "## Task 1: Dataset Visualization")
+     mirror typical AI-generated scaffolding patterns.
+   - Explanatory text in the README uses structured, textbook-like
+     phrasing (e.g., "Phase initial", "Phase of convergence",
+     "Phase of stabilization") with little personalised voice.
+   - The physical interpretation paragraph in the README
+     ("L ∝ M^(3-4)", interaction term meaning) reads as
+     encyclopaedic rather than student-exploratory.
+
+   Indicators suggesting human work:
+   - The README is written in Spanish, consistent with a native
+     or fluent Spanish-speaking student, with natural phrasing.
+   - There are minor inconsistencies (e.g., broken image filename,
+     conceptual answers kept in README rather than notebooks) that
+     suggest a real student workflow rather than a fully polished
+     AI output.
+   - The choice of three specific alpha values (0.01, 0.05, 0.1)
+     and the experimentation structure reflect course-guided work.
+   - Some explanations reference the specific dataset values
+     (e.g., "~10.85 units … values go from 0.15 to 35.0"),
+     showing direct engagement with the data.
+
+B. Quantitative Estimate (rough, observational)
+   Code:                  ~50–60%  AI-assisted
+   Explanations/markdown: ~55–65%  AI-assisted
+   README:                ~60–70%  AI-assisted
+
+C. Commentary
+   The codebase shows strong structural consistency (uniform
+   docstrings, clean parameter naming, identical formatting
+   across both notebooks) that is more characteristic of
+   AI-assisted generation than typical student-authored code.
+   The README explanations, while accurate, rely on generic
+   physical descriptions that align with common ML tutorial
+   language. However, the Spanish narrative, minor structural
+   oversights, and direct references to computed values suggest
+   the student actively used and verified the outputs. The most
+   likely scenario is that AI tools were used for scaffolding
+   and documentation, with the student providing guidance,
+   running the code, and interpreting the results.
+
+   This assessment is observational and does not imply misconduct.
+
+================================================================
+END OF EVALUATION REPORT
+================================================================
